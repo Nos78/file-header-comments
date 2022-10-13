@@ -1,8 +1,8 @@
 /*
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
- * @Last Modified by: caoweiju
- * @Last Modified time: 2019-10-12 16:31:37
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-13 22:38:34
  */
 
 var vscode = require('vscode');
@@ -33,7 +33,34 @@ function activate(context) {
     console.log('"vscode-fileheader" is now active!');
     var disposable = vscode.commands.registerCommand('extension.fileheader', function () {
         var editor = vscode.editor || vscode.window.activeTextEditor;
-                                    
+
+        var languageId = editor.document.languageId || null;
+        var configTpl = null;
+
+        switch(languageId) {
+            case 'shellscript':
+            case 'python':
+            case 'perl':
+            case 'perl6':
+                // shell script uses # for comments
+                // use the shell.tpl template
+                configTpl = config.shell.tpl;
+            break;
+                // html uses <!-- --> comment blocks
+            case 'html':
+                configTpl = config.html.tpl;
+            break;
+                // visual basic uses ' comments
+            case 'vb':
+                configTpl = config.vb.tpl;
+            break;
+
+            default:
+                 // defaults to existing C-style
+                 // implementation template
+                 configTpl = config.tpl;
+        }
+
         /*
         * @Author: huangyuan
         * @Date: 2017-02-28 17:51:35
@@ -53,7 +80,7 @@ function activate(context) {
                 updateTime: time
             }
             try {
-                var tpl = new template(config.tpl).render(data);;
+                var tpl = new template(configTpl).render(data);;
                 editBuilder.insert(new vscode.Position(line, 0), tpl);
             } catch (error) {
                 console.error(error);
@@ -78,16 +105,57 @@ function activate(context) {
                 var diff = -1;
                 var lineCount = document.lineCount;
                 var comment = false;
+
+                var prefix = null;
+                var commentStartsWith = null;
+                var commentEndsWith = null;
+                switch(document.languageId) {
+                    // Catering for differing comment characters
+                    // shell scripts, python, perl, use hash
+                    // # there are no comment blocks
+                    case 'shellscript':
+                    case 'perl':
+                    case 'perl6':
+                    case 'python':
+                        commentStartsWith="#";
+                        prefix = "# ";
+                    break;
+                    // html uses
+                    // <!-- comments block
+                    //    - like this
+                    //    -->
+                    case 'html':
+                        commentStartsWith="<!--";
+                        commentEndsWith="-->";
+                        prefix = "  - ";
+                    break;
+                    // visual basic
+                    // ' inline comments,
+                    // ' no comment blocks
+                    case 'vb':
+                        commentStartsWith="'";
+                        prefix="' ";
+                    break;
+                    // Use existing behaviour with C-style comment
+                     /* comments block
+                      * like this
+                      */
+                    default:
+                        commentStartsWith="/*";
+                        commentEndsWith="*/";
+                        prefix = " * ";
+                }
+
                 for (var i = 0; i < lineCount; i++) {
                     var linetAt = document.lineAt(i);
                     
                     var lineTextOriginal = linetAt.text;
                     var line = linetAt.text;
                     line = line.trim();
-                    if (line.startsWith("/*") && !line.endsWith("*/")) {//是否以 /* 开头
+                    if (line.startsWith(commentStartsWith) && ((!commentEndsWith) || !line.endsWith(commentEndsWith))) {//是否以 /* 开头
                         comment = true;//表示开始进入注释
                     } else if (comment) {
-                        if (line.endsWith("*/")) {
+                        if ((commentEndsWith) && line.endsWith(commentEndsWith)) {
                             comment = false;//结束注释
                         }
                         var range = linetAt.range;
@@ -99,7 +167,7 @@ function activate(context) {
                                     return p1+p2+p3+config.LastModifiedBy;
                                 });
                             } else {
-                                authorText=' * @Last Modified by: ' + config.LastModifiedBy;
+                                authorText=prefix + '@Last Modified by: ' + config.LastModifiedBy;
                             }
                         } else if (line.indexOf('@Last\ Modified\ time') > -1) {//最后修改时间
                             var time = line.replace('@Last\ Modified\ time:', '').replace('*', '');
@@ -114,7 +182,7 @@ function activate(context) {
                                     return p1+p2+p3+currTimeFormate;
                                 });
                             } else {
-                                lastTimeText=' * @Last Modified time: ' + currTimeFormate;
+                                lastTimeText=prefix + '@Last Modified time: ' + currTimeFormate;
                             }
                         }
                         if (!comment) {
