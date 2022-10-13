@@ -42,7 +42,16 @@ In the User Settings inside, set and modify the creator's name & email.
 
 ## Change log
 
-### 1.0.0
+### 0.1.0
+
+Added support for languages that use alternative characters for comments.
+  1. Shell scripts, and other scripting languages such as perl and python, use # comments.
+  2. Visual basic uses ' for comments.
+  3. html comment blocks use <!-- -->
+
+Now you can add file headers for all these file types. The template for each of these can be found in the settings. The default template looks the same as for the C-style comment block, but with the alternative character instead of *.
+
+### 0.0.2
 
 1. Support hotkey insert header comments
 2. Support Save file, automatically update the time
