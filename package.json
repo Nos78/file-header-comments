@@ -2,7 +2,7 @@
 	"name": "vscode-fileheader",
 	"displayName": "vscode-fileheader",
 	"description": "insert header comment,and automatically update the time.",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"publisher": "mikey",
 	"author": {
 		"name": "mikey.zhaopeng",
