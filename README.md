@@ -9,7 +9,7 @@ eg:
 ```
 /*
  * @Author: mikey.zhaopeng
- * @Email:  admin@gmial.com
+ * @Email:  admin@example.com
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
  * @Last Modified time: 2022-10-15 18:45:59
@@ -42,6 +42,12 @@ In the User Settings inside, set and modify the creator's name & email.
 `ctrl+alt+i` You can insert comments in the head.
 
 ## Change log
+
+### 0.1.1
+1. Re-worded the displayName field in the package manifest, since it was the same as the name field, we were giving up on the opportunity to explain what our extension does to those marketplace browsers who might only quickly scan down the list of extensions. It didn't make sense to have the same name twice, especially when said name is not very explanatory.
+2. Fixed the sponsor URL in the manifest.
+3. Removed the README for ch-zn (simplified chinese) since I cannot speak this language, and therefore am unable to make the changes necessary to make the README up-to-date. It is preferable to have English only and let the user translate it for themselves rather than provide a README that is wrong because it is no longer up-to-date.
+
 
 ### 0.1.0
 **Release date 2022-10-15**
