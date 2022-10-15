@@ -1,7 +1,7 @@
 {
 	"name": "vscode-fileheader",
 	"displayName": "vscode-fileheader",
-	"description": "insert header comment,and automatically update the time.",
+	"description": "Insert file header comments, attributing the original and modified by authors, with the date and time of creation. Automatically updates the modified by author name, and the modified at date & time whenever a file is saved.",
 	"version": "0.1.0",
 	"publisher": "mikey",
 	"author": {
@@ -35,37 +35,37 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "File header Configuration",
+			"title": "File Header Configuration",
 			"properties": {
 				"fileheader.Author": {
 					"type": "string",
 					"default": "mikey.zhaopeng",
-					"description": "By default, create file  username"
+					"description": "The author name to use when creating new files."
 				},
 				"fileheader.tpl": {
 					"type": "string",
-					"default": "/*\r\n * @Author: {author} \r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime} \r\n */\r\n",
-					"description": "Default common template using C-style comments. Do not modify it!!!!!\nApplies to all file types not listed here."
+					"default": "/*\r\n * @Author: {author} \r\n * @Email: {email}\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime}\r\n * @Description: Description\r\n */\r\n",
+					"description": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\nApplies to all file types not listed here."
 				},
 				"fileheader.shell.tpl": {
 					"type": "string",
-					"default": "# @Author: {author}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n",
-					"description": "Default template for shell script files, uses hash for comments. Do not modify it!!!!!\nFile types: shell, python, perl"
+					"default": "# @Author: {author}\r\n# @Email: {email}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n# @Description: Description\r\n",
+					"description": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\nFile types: shell, python, perl, perl6"
 				},
 				"fileheader.html.tpl": {
 					"type": "string",
-					"default": "<!-- @Author: {author}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime} \r\n   -->\r\n",
-					"description": "By default, html type, common template with <!-- --> comment blocks. Do not modify it!!!!!\nFile types: html"
+					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: Description\r\n */\r\n   -->\r\n",
+					"description": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\nFile types: html"
 				},
 				"fileheader.vb.tpl": {
 					"type": "string",
-					"default": "' @Author: {author}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n",
-					"description": "By default, shell type template common template with hash comments instead of C-style. Do not modify it!!!!!\nFile types: visual basic (vb)"
+					"default": "' @Author: {author}\r\n' @Email: {email}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n' @Description: Description\r\n",
+					"description": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\nFile types: visual basic (vb)"
 				},
 				"fileheader.LastModifiedBy": {
 					"type": "string",
 					"default": "mikey.zhaopeng",
-					"description": "By default, update file  username."
+					"description": "The author name to use when modifying existing files."
 				}
 			}
 		},
