@@ -1,6 +1,6 @@
 {
 	"name": "vscode-fileheader",
-	"displayName": "vscode-fileheader",
+	"displayName": "Insert Fileheader Comment Block",
 	"description": "Insert a file header comment block, attributing the original and modified by authors, with the date and time of creation and a description of the file. Automatically updates the modified by name, date & time whenever a file is saved.",
 	"version": "0.1.0",
 	"license": "Apache-2.0",
@@ -16,7 +16,9 @@
 		"color": "#3B4859",
 		"theme": "dark"
 	},
-	"sponsor": "https://paypal.me/MrDataFund",
+	"sponsor": {
+		"url": "https://paypal.me/MrDataFund"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/nos78/vscode-fileheader.git"
