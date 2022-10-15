@@ -49,12 +49,15 @@ In the User Settings inside, set and modify the creator's name & email.
 
 This release candidate has been prepared under a new publisher. This effectively means that it becomes a new extension with a new history. Without any links to the old extension, sadly this means that users of the existing extension will not be upgraded automatically. We have made attempts to contact the original author in the hope that either we can merge our new functionality into the parent repository, have the ability to modify the existing extension, or else have it transferred under our control. Failing any of those options, then mark the old extension as deprecated and direct users to install this new one.
 
+File comment headers for most common file types are now supported. Each type has its own the template that can be found in the settings. The look is identical to the C-Style comment block, but using the alternative comment character instead of an asterisk (*).
+
 Added support for languages that use alternative characters for comments:
-  1. Shell scripts and other scripting languages, such as perl and python, use # comments.
-  2. Visual basic uses ' for comments.
-  3. html comment blocks use <!-- -->
+  1. Shell scripts and other scripting languages, such as perl and python use hash (#) character for comments.
+  2. Visual basic uses apostrophe (') character for comments.
+  3. A html comment block uses exclamation mark and dashes between angled brackets.
 
 Now you can add file headers for all these file types. The template for each of these can be found in the settings. The default template looks the same as for the C-style comment block, but with the alternative character instead of *.
+
 
 ### 0.0.3 :
 *This is a summary list of the changes that have been committed to the github repository since the last marketplace release up until the repository was forked on 2022-10-13. **Note** that this version was not released to the marketplace, nor is there a downloadable release package.*
@@ -70,7 +73,12 @@ Minor bug fixes by various contributors:
   2. Support Save file, automatically update the time
   3. Support the configuration and update the creator's name
 
-## tasks
+## tasks for future releases:
+*(for further details on these tasks/issues, refer to https://github.com/Nos78/vscode-fileheader/issues and https://github.com/Nos78/vscode-fileheader/projects)*
 
- [] Currently the template cannot be modified without potentially having to make changes to the code. Make the template editable without breaking the auto-update-on-save feature.
- [] the "modified by" and "modified time" are hardcoded into extension.js. Refactor the code so that these are also editable in the settings, fixing the above also.
+ 1. [] Currently the template cannot be modified without potentially having to make changes to the code. Make the template editable without breaking the auto-update-on-save feature. The hard-coded strings in extension.js essentially prevents the user from changing the look of the template for their file comment header.
+ 2. [] the "modified by" and "modified time" are hardcoded into extension.js. Refactor the code so that these are also editable in the settings, fixing the above also.
+ 3. [] Some form of @copyright field would be useful, either directing the reader to a project-wide statement or file, or a URL, or else inserting a sting literal which would also be user defined via the settings page.
+ 4. [] Comment headers often contain a version number along with the modified date & time. This would be implemented by way of an additional **@Version** field, with several formats to choose from in the settings. A selection of pre-configured version styles, along with a custom entry should the user wish to define their own.
+ 5. [] File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.
+ 6. [] Allow the user to specify rules as to how the version number is incremented. What defines whether to increment the patch number, or to increment the minor or major number?
