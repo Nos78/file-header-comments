@@ -1,25 +1,29 @@
 {
 	"name": "vscode-fileheader",
 	"displayName": "vscode-fileheader",
-	"description": "Insert file header comments, attributing the original and modified by authors, with the date and time of creation. Automatically updates the modified by author name, and the modified at date & time whenever a file is saved.",
+	"description": "Insert a file header comment block, attributing the original and modified by authors, with the date and time of creation and a description of the file. Automatically updates the modified by name, date & time whenever a file is saved.",
 	"version": "0.1.0",
 	"license": "Apache-2.0",
-	"publisher": "mikey",
+	"publisher": "codinqq",
 	"author": {
-		"name": "mikey.zhaopeng",
-		"url": "http://zhaopeng.me"
+		"name": "Noscere",
+		"url": "http://codin.gq"
 	},
+	"keywords": [
+        "header", "description", "comment", "author", "modified"
+	],
 	"galleryBanner": {
 		"color": "#3B4859",
 		"theme": "dark"
 	},
+	"sponsor": "https://paypal.me/MrDataFund",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/zhaopengme/vscode-fileheader.git"
+		"url": "https://github.com/nos78/vscode-fileheader.git"
 	},
 	"bugs": {
-		"url": "https://github.com/zhaopengme/vscode-fileheader/issues",
-		"email": "imzhpe@qq.com"
+		"url": "https://github.com/nos78/vscode-fileheader/issues",
+		"email": "support@codin.gq"
 	},
 	"icon": "images/icon.png",
 	"engines": {
