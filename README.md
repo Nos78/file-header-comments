@@ -42,9 +42,17 @@ In the User Settings inside, set and modify the creator's name & email.
 
 `ctrl+alt+i` You can insert comments in the head.
 
-## Change log
+
+# Change log
+
+## 0.1.4
+**Not yet released**
+
+
+## Change log (history)
 
 ### 0.1.3
+**Release date 2022-10-16**
 * Re-factored the way the templates are displayed by the Settings UI so that they are grouped together and categorised by language type.
 * Added logic to use the user-defined Author name when the Modified By remains undefined (either when it remains the defualt value or is blank).
 * Updated the Settings UI description fields so that markdown tags now work.
@@ -52,6 +60,7 @@ In the User Settings inside, set and modify the creator's name & email.
 The extension is now called file-header-comments, since the previous name was (obviously!) in use. The presumption that an extension was uniquely identified by a the combination of publisherId.extensionName was wrong, and the extension name has to also be unique. However, the settings are keeping the fileheader prefix, so that if a user upgrades to this extension, their settings will transfer automatically.
 
 ### 0.1.1
+**Release date 2022-10-15**
 1. Re-worded the displayName field in the package manifest, since it was the same as the name field, we were giving up on the opportunity to explain what our extension does to those marketplace browsers who might only quickly scan down the list of extensions. It didn't make sense to have the same name twice, especially when said name is not very explanatory.
 2. Fixed the sponsor URL in the manifest.
 3. Removed the README for ch-zn (simplified chinese) since I cannot speak this language, and therefore am unable to make the changes necessary to make the README up-to-date. It is preferable to have English only and let the user translate it for themselves rather than provide a README that is wrong because it is no longer up-to-date.
@@ -86,6 +95,7 @@ Minor bug fixes by various contributors:
   1. Support hotkey insert header comments
   2. Support Save file, automatically update the time
   3. Support the configuration and update the creator's name
+
 
 ## tasks for future releases:
 *(for further details on these tasks/issues, refer to https://github.com/Nos78/vscode-fileheader/issues and https://github.com/Nos78/vscode-fileheader/projects)*
