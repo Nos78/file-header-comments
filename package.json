@@ -2,7 +2,7 @@
 	"name": "file-header-comments",
 	"displayName": "Insert Fileheader Comments Block",
 	"description": "Insert a file header comment block, attributing the original and modified by authors, with the date and time of creation and a description of the file. Automatically updates the modified by name, date & time whenever a file is saved.",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"license": "Apache-2.0",
 	"publisher": "codingq",
 	"author": {
@@ -102,9 +102,9 @@
 		"vscode": "^0.11.0"
 	},
 	"__metadata": {
-		"id": "b3abc059-1ff4-4741-b367-1c9fe6c15855",
-		"publisherDisplayName": "mikey",
-		"publisherId": "5886de37-d70f-4f92-9cc9-5dd61c8aa7e1",
+		"id": "f04c96be-b8f2-4b61-829c-ea92c91bd713",
+		"publisherDisplayName": "codingq",
+		"publisherId": "de50c412-f611-4186-907e-80a8dbf49ca6",
 		"isPreReleaseVersion": false
 	}
 }
