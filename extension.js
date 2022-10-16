@@ -1,8 +1,8 @@
 /*
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-13 22:38:34
+ * @Last Modified by: Someone
+ * @Last Modified time: 2022-10-16 04:41:26
  */
 
 var vscode = require('vscode');
@@ -31,10 +31,27 @@ Date.prototype.format = function (format) {
 function activate(context) {
     var config = vscode.workspace.getConfiguration('fileheader');
     console.log('"vscode-fileheader" is now active!');
+
+    var lastModifiedBy = config.LastModifiedBy;
+    if(config.Author) {
+        // Sanity check - shouldn't be null, but you never know
+        if(config.LastModifiedBy) {
+            if(config.Author != 'Someone' && config.LastModifiedBy == 'Someone') {
+                // If the author is set, but the last modified isn't...
+                lastModifiedBy = config.Author;
+            }
+        } // if config.LastModifiedBy
+        else {
+            // if there is no Last Modified name specified
+            // then use the author name instead
+            lastModifiedBy = config.Author;
+        }
+    }
     var disposable = vscode.commands.registerCommand('extension.fileheader', function () {
         var editor = vscode.editor || vscode.window.activeTextEditor;
 
         var languageId = editor.document.languageId || null;
+        var templates = config.templates;
         var configTpl = null;
 
         switch(languageId) {
@@ -44,21 +61,21 @@ function activate(context) {
             case 'perl6':
                 // shell script uses # for comments
                 // use the shell.tpl template
-                configTpl = config.shell.tpl;
+                configTpl = templates.shellScript;
             break;
                 // html uses <!-- --> comment blocks
             case 'html':
-                configTpl = config.html.tpl;
+                configTpl = templates.html;
             break;
                 // visual basic uses ' comments
             case 'vb':
-                configTpl = config.vb.tpl;
+                configTpl = templates.visualBasic;
             break;
 
             default:
                  // defaults to existing C-style
                  // implementation template
-                 configTpl = config.tpl;
+                 configTpl = templates.c;
         }
 
         /*
@@ -75,7 +92,7 @@ function activate(context) {
             var data = {
                 author: config.Author,
                 email: config.Email,
-                lastModifiedBy: config.LastModifiedBy,
+                lastModifiedBy: lastModifiedBy, // use local variable assigned above
                 createTime: time,
                 updateTime: time
             }
