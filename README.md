@@ -44,7 +44,7 @@ In the User Settings inside, set and modify the creator's name & email.
 ## Change log
 
 ### 0.1.3
-Extension is now called file-header-comments, since the previous name was (obviously!) in use. The presumption that an extension was uniquely identified by a the combination of publisherId.extensionName was wrong, and the extension name has to also be unique.
+* Re-factored the way the templates are displayed by the Settings UI so that they are grouped together and categorised by language type.
 
 ### 0.1.1
 1. Re-worded the displayName field in the package manifest, since it was the same as the name field, we were giving up on the opportunity to explain what our extension does to those marketplace browsers who might only quickly scan down the list of extensions. It didn't make sense to have the same name twice, especially when said name is not very explanatory.
