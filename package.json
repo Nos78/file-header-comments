@@ -42,37 +42,42 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "File Header Configuration",
+			"title": "File Header Comments Configuration",
 			"properties": {
 				"fileheader.Author": {
 					"type": "string",
-					"default": "mikey.zhaopeng",
+					"default": "Someone",
 					"description": "The author name to use when creating new files."
 				},
-				"fileheader.tpl": {
+				"fileheader.Email": {
+					"type": "string",
+					"default": "someone@example.com",
+					"description": "The author's e-mail address."
+				},
+				"fileheader.templates.c": {
 					"type": "string",
 					"default": "/*\r\n * @Author: {author} \r\n * @Email: {email}\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime}\r\n * @Description: Description\r\n */\r\n",
-					"description": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\nApplies to all file types not listed here."
+					"markdownDescription": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\n\nApplies to all file types not listed here."
 				},
-				"fileheader.shell.tpl": {
+				"fileheader.templates.shellScript": {
 					"type": "string",
 					"default": "# @Author: {author}\r\n# @Email: {email}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n# @Description: Description\r\n",
-					"description": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\nFile types: shell, python, perl, perl6"
+					"markdownDescription": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\n\nFile types: shell, python, perl, perl6"
 				},
-				"fileheader.html.tpl": {
+				"fileheader.templates.html": {
 					"type": "string",
 					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: Description\r\n */\r\n   -->\r\n",
-					"description": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\nFile types: html"
+					"markdownDescription": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\n\nFile types: html"
 				},
-				"fileheader.vb.tpl": {
+				"fileheader.templates.visualBasic": {
 					"type": "string",
 					"default": "' @Author: {author}\r\n' @Email: {email}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n' @Description: Description\r\n",
-					"description": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\nFile types: visual basic (vb)"
+					"markdownDescription": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\n\nFile types: visual basic (vb)"
 				},
 				"fileheader.LastModifiedBy": {
 					"type": "string",
-					"default": "mikey.zhaopeng",
-					"description": "The author name to use when modifying existing files."
+					"default": "Someone",
+					"markdownDescription": "The author name to use when modifying existing files.\n\nIf `#fileheader.Author#` has been set, and this field is blank or left as default, then `#fileheader.Author#` will be used instead."
 				}
 			}
 		},
