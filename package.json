@@ -1,8 +1,8 @@
 {
-	"name": "vscode-fileheader",
-	"displayName": "Insert Fileheader Comment Block",
+	"name": "file-header-comments",
+	"displayName": "Insert Fileheader Comments Block",
 	"description": "Insert a file header comment block, attributing the original and modified by authors, with the date and time of creation and a description of the file. Automatically updates the modified by name, date & time whenever a file is saved.",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"license": "Apache-2.0",
 	"publisher": "codingq",
 	"author": {
@@ -10,7 +10,7 @@
 		"url": "http://codin.gq"
 	},
 	"keywords": [
-        "header", "description", "comment", "author", "modified"
+        "header", "file", "comments", "author", "modified"
 	],
 	"galleryBanner": {
 		"color": "#3B4859",
