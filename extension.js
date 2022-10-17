@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-17 17:30:05
+ * @Last Modified time: 2022-10-17 18:11:55
  */
 
 var vscode = require('vscode');
@@ -31,7 +31,7 @@ Date.prototype.format = function (format) {
 
 function activate(context) {
     var config = vscode.workspace.getConfiguration('fileheader');
-    console.log('"vscode-fileheader" is now active!');
+    console.log('"file-header-comments" is now active!');
 
     var lastModifiedBy = config.LastModifiedBy;
     if(config.Author) {
@@ -84,7 +84,7 @@ function activate(context) {
         * @Date: 2017-02-28 17:51:35
         * @Last Modified by:   huangyuan413026@163.com
         * @Last Modified time: 2017-02-28 17:51:35
-        * @description: 在当前行插入,而非在首行插入
+        * @description: Insert at the current row instead of the first row
         */
                 
         var line = editor.selection.active.line;
@@ -170,14 +170,14 @@ function activate(context) {
                     var lineTextOriginal = linetAt.text;
                     var line = linetAt.text;
                     line = line.trim();
-                    if (line.startsWith(commentStartsWith) && ((!commentEndsWith) || !line.endsWith(commentEndsWith))) {//是否以 /* 开头
-                        comment = true;//表示开始进入注释
+                    if (line.startsWith(commentStartsWith) && ((!commentEndsWith) || !line.endsWith(commentEndsWith))) {// Does it start with comment character?
+                        comment = true;// start of entering comments
                     } else if (comment) {
                         if ((commentEndsWith) && line.endsWith(commentEndsWith)) {
-                            comment = false;//结束注释
+                            comment = false;//end comment
                         }
                         var range = linetAt.range;
-                        if (line.indexOf('@Last\ Modified\ by') > -1) {//表示是修改人
+                        if (line.indexOf('@Last\ Modified\ by') > -1) {//Indicates the editor name
                             var replaceAuthorReg = /^(.*?)(@Last Modified by:)(\s*)(\S*)$/;
                             authorRange = range;
                             if (replaceAuthorReg.test(lineTextOriginal)) {
@@ -187,7 +187,7 @@ function activate(context) {
                             } else {
                                 authorText=prefix + '@Last Modified by: ' + config.LastModifiedBy;
                             }
-                        } else if (line.indexOf('@Last\ Modified\ time') > -1) {//最后修改时间
+                        } else if (line.indexOf('@Last\ Modified\ time') > -1) {//Last modified at time
                             var time = line.replace('@Last\ Modified\ time:', '').replace('*', '');
                             var oldTime = new Date(time);
                             var curTime = new Date();
@@ -204,10 +204,10 @@ function activate(context) {
                             }
                         }
                         if (!comment) {
-                            break;//结束
+                            break;//Finish
                         }
                     }
-                }
+                }// end for
                 if ((authorRange != null) && (lastTimeRange != null) && (diff > 20)) {
                     setTimeout(function () {
                         editor.edit(function (edit) {
