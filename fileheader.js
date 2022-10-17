@@ -3,7 +3,7 @@
  * @Email: noscere1978@gmail.com
  * @Date: 2022-10-17 17:21:51 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-17 17:30:07
+ * @Last Modified time: 2022-10-17 18:54:26
  * @Description: Collection of functions that will populate
  * file comment headers.
  */
@@ -39,13 +39,23 @@
         return fn.apply(model);
     };
 }
-/*
-function() {
 
+
+function replaceSubstringInLine(line, substringRegex, newText) {
+    var newLine = line.replace(substringRegex, function(match, p1, p2, p3){
+        return p1 + p2 + p3 + newText;
+    });
+    return newLine;   
 }
 
-function() {
-
+function constructCommentLine(fieldLabel, fieldText, linePrefix = "", lineSuffix = "") {
+    
+    var populatedText = linePrefix + fieldLabel + fieldText + lineSuffix;
+    return populatedText;
+                                
 }
-*/
+
+
 exports.template = template;
+exports.replaceSubstringInLine = replaceSubstringInLine;
+exports.constructCommentLine = constructCommentLine;

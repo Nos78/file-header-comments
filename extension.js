@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-17 18:11:55
+ * @Last Modified time: 2022-10-17 18:51:47
  */
 
 var vscode = require('vscode');
@@ -178,14 +178,13 @@ function activate(context) {
                         }
                         var range = linetAt.range;
                         if (line.indexOf('@Last\ Modified\ by') > -1) {//Indicates the editor name
+                            authorText = fileheader.replaceField(fieldLabel, fieldText);
                             var replaceAuthorReg = /^(.*?)(@Last Modified by:)(\s*)(\S*)$/;
                             authorRange = range;
                             if (replaceAuthorReg.test(lineTextOriginal)) {
-                                authorText = lineTextOriginal.replace(replaceAuthorReg, function(match, p1, p2, p3){
-                                    return p1+p2+p3+config.LastModifiedBy;
-                                });
+                                authorText = fileheader.replaceSubstringInLine(lineTextOriginal, replaceAuthorReg, config.LastModifiedBy);
                             } else {
-                                authorText=prefix + '@Last Modified by: ' + config.LastModifiedBy;
+                                authorText = fileheader.constructCommentLine('@Last Modified by: ', config.LastModifiedBy, prefix);
                             }
                         } else if (line.indexOf('@Last\ Modified\ time') > -1) {//Last modified at time
                             var time = line.replace('@Last\ Modified\ time:', '').replace('*', '');
@@ -196,11 +195,9 @@ function activate(context) {
                             lastTimeRange = range;
                             var currTimeFormate = curTime.format("yyyy-MM-dd hh:mm:ss");
                             if (replaceTimeReg.test(lineTextOriginal)) {
-                                lastTimeText = lineTextOriginal.replace(replaceTimeReg, function(match, p1, p2, p3){
-                                    return p1+p2+p3+currTimeFormate;
-                                });
+                                lastTimeText = fileheader.replaceSubstringInLine(lineTextOriginal, replaceTimeReg, currTimeFormate)
                             } else {
-                                lastTimeText=prefix + '@Last Modified time: ' + currTimeFormate;
+                                lastTimeText = fileheader.constructCommentLine('@Last Modified time: ', currTimeFormate, prefix);
                             }
                         }
                         if (!comment) {
