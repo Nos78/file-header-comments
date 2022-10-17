@@ -78,6 +78,11 @@
 					"type": "string",
 					"default": "Someone",
 					"markdownDescription": "The author name to use when modifying existing files.\n\nIf `#fileheader.Author#` has been set, and this field is blank or left as default, then `#fileheader.Author#` will be used instead."
+				},
+				"fileheader.dateFormat": {
+					"type": "string",
+					"default": "yyyy-MM-dd hh:mm:ss",
+					"markdownDescription": "The date & time format to use for indicating when a file was created or last modified at."
 				}
 			}
 		},
