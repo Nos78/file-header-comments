@@ -45,15 +45,22 @@ In the User Settings inside, set and modify the creator's name & email.
 
 # Change log
 
-## 0.1.4
+## 0.2.0
+**Release date 2022-10-18**
+
+Incremented the minor version to reflect the new functionality. V0.2 of the extension should be the last development cycle before the extension is production ready - that is, officially released as v1.x.y! Some of the changes going into this initial 0.2 release are:
+* As promised, the new date format string added to the settings in the previous release now defines the date & time format for the file comment header. This string uses the allowed formatting for a javascript Date object, such as yyyy-MM-dd for a date that looks like 2022-12-03
+* Unit tests have been added for all fileheader module functions, which will assist future development not to break things.
+
+
+## Change log (history)
+
+### 0.1.4
 **Release date 2022-10-18**
 * Re-factored extension logic, separating the file header comments engine and related manipulation/population of headers out of extension.js and into a separate module. This additional layer of abstraction undoes some of the close-coupled functionality of extension.js and facilitates unit testing of the header logic.
 Extension.js couldn't be unit tested under the mocha framework as vscode is an invalid reference (by design; modules referencing vscode can only be integration tested, according to mocha documentation).
 * Modified extension's keywords to make searching for the extension in the marketplace a little easier (and attempting to link it to the previous extension name).
 * Added a new setting for the date format to the configuration properties. Users can now modify the display format string via the settings UI. This string is not currently referenced within the code, and the format string is currently hard-coded within the extension, but this will be useable from the next release of the extension! 
-
-
-## Change log (history)
 
 ### 0.1.3
 **Release date 2022-10-16**
