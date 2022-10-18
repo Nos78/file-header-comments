@@ -112,7 +112,7 @@ Minor bug fixes by various contributors:
 *(for further details on these tasks/issues, refer to https://github.com/Nos78/vscode-fileheader/issues and https://github.com/Nos78/vscode-fileheader/projects)*
 
  1. [] Currently the template cannot be modified without potentially having to make changes to the code. Make the template editable without breaking the auto-update-on-save feature. The hard-coded strings in extension.js essentially prevents the user from changing the look of the template for their file comment header.
- 2. [] the "modified by" and "modified time" are hardcoded into extension.js. Refactor the code so that these are also editable in the settings, fixing the above also.
+ 2. [x] the "modified by" and "modified time" are hardcoded into extension.js. Refactor the code so that these are also editable in the settings, fixing the above also.
  3. [] Some form of @copyright field would be useful, either directing the reader to a project-wide statement or file, or a URL, or else inserting a sting literal which would also be user defined via the settings page.
  4. [] Comment headers often contain a version number along with the modified date & time. This would be implemented by way of an additional **@Version** field, with several formats to choose from in the settings. A selection of pre-configured version styles, along with a custom entry should the user wish to define their own.
  5. [] File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.
