@@ -89,7 +89,7 @@
 		"commands": [
 			{
 				"command": "extension.fileheader",
-				"title": "fileheader"
+				"title": "Insert File Comments Header Block"
 			}
 		],
 		"keybindings": [
