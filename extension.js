@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-17 18:51:47
+ * @Last Modified time: 2022-10-18 19:16:36
  */
 
 var vscode = require('vscode');
@@ -160,7 +160,6 @@ function activate(context) {
                         }
                         var range = linetAt.range;
                         if (line.indexOf('@Last\ Modified\ by') > -1) {//Indicates the editor name
-                            authorText = fileheader.replaceField(fieldLabel, fieldText);
                             var replaceAuthorReg = /^(.*?)(@Last Modified by:)(\s*)(\S*)$/;
                             authorRange = range;
                             if (replaceAuthorReg.test(lineTextOriginal)) {
@@ -175,7 +174,7 @@ function activate(context) {
                             var diff = (curTime - oldTime) / 1000;
                             var replaceTimeReg = /^(.*?)(@Last Modified time:)(\s*)(.*)$/;
                             lastTimeRange = range;
-                            var currTimeFormate = curTime.format("yyyy-MM-dd hh:mm:ss");
+                            var currTimeFormate = curTime.format(config.dateFormat);
                             if (replaceTimeReg.test(lineTextOriginal)) {
                                 lastTimeText = fileheader.replaceSubstringInLine(lineTextOriginal, replaceTimeReg, currTimeFormate)
                             } else {
