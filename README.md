@@ -110,7 +110,3 @@ Minor bug fixes by various contributors:
  4. [] Comment headers often contain a version number along with the modified date & time. This would be implemented by way of an additional **@Version** field, with several formats to choose from in the settings. A selection of pre-configured version styles, along with a custom entry should the user wish to define their own.
  5. [] File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.
  6. [] Allow the user to specify rules as to how the version number is incremented. What defines whether to increment the patch number, or to increment the minor or major number?
-
-
-### Additional credits
-![icon dark](https://github.com/nos78/file-header-comments/images/comment-dark.png)![icon light](https://github.com/nos78/file-header-comments/images/comment-light.png) - [https://www.flaticon.com/free-icons/comment](Comment icons created by Freepik - Flaticon) 
