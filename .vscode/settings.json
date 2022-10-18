@@ -1,0 +1,9 @@
+{
+    "mocha.sideBarOptions": {
+        "lens": true,
+        "decoration": true,
+        "autoUpdateTime": 2000,
+        "showDebugTestStatus": true
+    },
+    "mocha.options": {"ui": "tdd"},
+}
