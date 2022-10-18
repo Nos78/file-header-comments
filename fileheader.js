@@ -71,10 +71,20 @@ function replaceSubstringInLine(line, substringRegex, newText) {
 }
 
 function constructCommentLine(fieldLabel, fieldText, linePrefix = "", lineSuffix = "") {
-    
+    if(!fieldLabel) {
+        fieldLabel = "";
+    }
+    if(!fieldText) {
+        fieldText = "";
+    }
+    if(!linePrefix) {
+        linePrefix = "";
+    }
+    if(!lineSuffix) {
+        lineSuffix = "";
+    }
     var populatedText = linePrefix + fieldLabel + fieldText + lineSuffix;
     return populatedText;
-                                
 }
 
 
