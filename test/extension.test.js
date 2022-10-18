@@ -160,4 +160,44 @@ suite(`${moduleName} test suite`, function() {
         var populatedTpl = templateObject.render(data);
         assert.strictEqual(expectedTpl, populatedTpl);
     });
+    
+    test(`${moduleName} - function constructCommentLine()`, function() {
+        // Test the function in all code legs
+        // linePrefix and lineSuffix are optional, so test without, with each and with both.
+
+        // constructCommentLine (fieldLabel, fieldText, linePrefix = "", lineSuffix = "")
+        var fieldLabel = "@Last Modified By: ";
+        var fieldData = testData.config.Author;
+        
+        var actualString = fileheader.constructCommentLine(fieldLabel, fieldData);
+        var expectedString = fieldLabel + fieldData;
+        assert.strictEqual(actualString, expectedString, `1. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}") returned unexpected string:\n"${actualString}\nWe expected:\n${expectedString}".`);
+
+        // Now test with a prefix only
+        var prefix = " * ";
+        actualString = fileheader.constructCommentLine(fieldLabel, fieldData, prefix);
+        expectedString = prefix + fieldLabel + fieldData;
+        assert.strictEqual(actualString, expectedString, `2. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}", "${prefix}") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
+
+        // Now test with a suffix only
+        var suffix = " * ";
+        actualString = fileheader.constructCommentLine(fieldLabel, fieldData, "", suffix);
+        expectedString = fieldLabel + fieldData + suffix;
+        assert.strictEqual(actualString, expectedString, `3. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}", "", "${suffix}") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
+
+        // Now test with a both prefix and suffix
+        var prefix = " * ";
+        var suffix = " * ";
+        actualString = fileheader.constructCommentLine(fieldLabel, fieldData, prefix, suffix);
+        expectedString = prefix + fieldLabel + fieldData + suffix;
+        assert.strictEqual(actualString, expectedString, `4. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}", "${prefix}", "${suffix}") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
+
+        // Now try to break the function
+        // Can we cope with unexpected data?
+        var actualString = fileheader.constructCommentLine(null, null, null, null);
+        var expectedString = null + null + null + null;
+        assert.strictEqual(actualString, expectedString, `4. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}", "${prefix}", "${suffix}") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
+
+        //var testLine = "@"
+    });
 });
