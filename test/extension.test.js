@@ -161,6 +161,37 @@ suite(`${moduleName} test suite`, function() {
         assert.strictEqual(expectedTpl, populatedTpl);
     });
     
+    test(`${moduleName} - function replaceSubstringInLine()`, function() {
+        // Test the function, all parameters
+        // replaceSubstringInLine(line, substringRegex, newText)
+
+        var originalLine = " * @Last Modified by:   Noscere ";
+        var replaceAuthorReg = /^(.*?)(@Last Modified by:)(\s*)(\S*)$/;
+        var expectedText = " * @Last Modified by:   " + testData.config.LastModifiedBy + " ";
+        var newLineText = fileheader.replaceSubstringInLine(originalLine, replaceAuthorReg, testData.config.LastModifiedBy);
+        assert.strictEqual(newLineText, expectedText, `1. ${moduleName}.replaceSubstringInLine("${originalLine}", "${replaceAuthorReg}", "${testData.config.LastModifiedBy}") returned unexpected string:\n"${newLineText}"\nWe expected:\n"${expectedText}".`);
+
+        // "yyyy-MM-dd hh:mm:ss"
+        originalLine = " * @Last Modified time: 2022-10-18 18:25:02";
+        var replaceTimeReg = /^(.*?)(@Last Modified time:)(\s*)(.*)$/;
+        var curTime = new Date();
+        var currTimeFormatted = curTime.format(testData.config.dateFormat);
+        expectedText = " * @Last Modified time: " + currTimeDFormatted;
+        newLineText = fileheader.replaceSubstringInLine(originalLine, replaceTimeReg, currTimeFormatted);
+        assert.strictEqual(newLineText, expectedText, `2. ${moduleName}.replaceSubstringInLine("${originalLine}", "${replaceTimeReg}", "${currTimeFormatted}") returned unexpected string:\n"${newLineText}"\nWe expected:\n"${expectedText}".`);
+        
+        // Test when there should be nothing changed
+        originalLine = " * @Email: someone@example.com";
+        expectedText = originalLine;
+        newLineText = fileheader.replaceSubstringInLine(originalLine, replaceAuthorReg, testData.config.LastModifiedBy);
+        assert.strictEqual(newLineText, expectedText, `3. ${moduleName}.replaceSubstringInLine("${originalLine}", "${replaceAuthorReg}", "${testData.config.LastModifedBy}") returned unexpected string:\n"${newLineText}"\nWe expected:\n"${expectedText}".`)
+        // Test when there should be nothing changed
+        originalLine = " * @Email: someone@example.com";
+        expectedText = originalLine;
+        newLineText = fileheader.replaceSubstringInLine(originalLine, replaceTimeReg, currTimeFormatted);
+        assert.strictEqual(newLineText, expectedText, `4. ${moduleName}.replaceSubstringInLine("${originalLine}", "${replaceTimeReg}", "${currTimeFormatted}") returned unexpected string:\n"${newLineText}"\nWe expected:\n"${expectedText}".`)
+    });
+
     test(`${moduleName} - function constructCommentLine()`, function() {
         // Test the function in all code legs
         // linePrefix and lineSuffix are optional, so test without, with each and with both.
@@ -195,9 +226,7 @@ suite(`${moduleName} test suite`, function() {
         // Now try to break the function
         // Can we cope with unexpected data?
         var actualString = fileheader.constructCommentLine(null, null, null, null);
-        var expectedString = null + null + null + null;
-        assert.strictEqual(actualString, expectedString, `4. ${moduleName}.constructCommentLine("${fieldLabel}", "${fieldData}", "${prefix}", "${suffix}") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
-
-        //var testLine = "@"
+        var expectedString = "";
+        assert.strictEqual(actualString, expectedString, `5. ${moduleName}.constructCommentLine("null", "null", "null", "null") returned unexpected string:\n"${actualString}"\nWe expected:\n${expectedString}".`);
     });
 });
