@@ -46,7 +46,11 @@ In the User Settings inside, set and modify the creator's name & email.
 # Change log
 
 ## 0.1.4
-**Not yet released**
+**Release date 2022-10-18**
+* Re-factored extension logic, separating the file header comments engine and related manipulation/population of headers out of extension.js and into a separate module. This additional layer of abstraction undoes some of the close-coupled functionality of extension.js and facilitates unit testing of the header logic.
+Extension.js couldn't be unit tested under the mocha framework as vscode is an invalid reference (by design; modules referencing vscode can only be integration tested, according to mocha documentation).
+* Modified extension's keywords to make searching for the extension in the marketplace a little easier (and attempting to link it to the previous extension name).
+* Added a new setting for the date format to the configuration properties. Users can now modify the display format string via the settings UI. This string is not currently referenced within the code, and the format string is currently hard-coded within the extension, but this will be useable from the next release of the extension! 
 
 
 ## Change log (history)
@@ -106,3 +110,7 @@ Minor bug fixes by various contributors:
  4. [] Comment headers often contain a version number along with the modified date & time. This would be implemented by way of an additional **@Version** field, with several formats to choose from in the settings. A selection of pre-configured version styles, along with a custom entry should the user wish to define their own.
  5. [] File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.
  6. [] Allow the user to specify rules as to how the version number is incremented. What defines whether to increment the patch number, or to increment the minor or major number?
+
+
+### Additional credits
+![icon dark](https://github.com/nos78/file-header-comments/images/comment-dark.png)![icon light](https://github.com/nos78/file-header-comments/images/comment-light.png) - [https://www.flaticon.com/free-icons/comment](Comment icons created by Freepik - Flaticon) 
