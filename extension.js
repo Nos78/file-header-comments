@@ -71,7 +71,7 @@ function activate(context) {
                 
         var line = editor.selection.active.line;
         editor.edit(function (editBuilder) {
-            var time = new Date().format("yyyy-MM-dd hh:mm:ss");
+            var time = new Date().format(config.dateFormat);
             var data = {
                 author: config.Author,
                 email: config.Email,

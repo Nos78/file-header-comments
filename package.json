@@ -47,12 +47,14 @@
 				"fileheader.Author": {
 					"type": "string",
 					"default": "Someone",
-					"description": "The author name to use when creating new files."
+					"description": "The author name to use when creating new files.",
+					"order": 1
 				},
 				"fileheader.Email": {
 					"type": "string",
 					"default": "someone@example.com",
-					"description": "The author's e-mail address."
+					"description": "The author's e-mail address.",
+					"order": 2
 				},
 				"fileheader.templates.c": {
 					"type": "string",
@@ -77,12 +79,14 @@
 				"fileheader.LastModifiedBy": {
 					"type": "string",
 					"default": "Someone",
-					"markdownDescription": "The author name to use when modifying existing files.\n\nIf `#fileheader.Author#` has been set, and this field is blank or left as default, then `#fileheader.Author#` will be used instead."
+					"markdownDescription": "The author name to use when modifying existing files.\n\nIf `#fileheader.Author#` has been set, and this field is blank or left as default, then `#fileheader.Author#` will be used instead.",
+					"order": 3
 				},
 				"fileheader.dateFormat": {
 					"type": "string",
 					"default": "yyyy-MM-dd hh:mm:ss",
-					"markdownDescription": "The date & time format to use for indicating when a file was created or last modified at."
+					"markdownDescription": "The date & time format to use for indicating when a file was created or last modified at.",
+					"order": 4
 				}
 			}
 		},
