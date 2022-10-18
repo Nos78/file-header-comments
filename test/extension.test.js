@@ -1,3 +1,15 @@
+/*
+ * @Author: Noscere 
+ * @Email: noscere1978@gmail.com
+ * @Date: 2022-10-18 18:57:02
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-18 18:57:02
+ * @Description: Unit test file to test the extension logic. Much of the
+ * tests will exercise the functionality of the fileheader module, since
+ * this library contains most (if not all) of the header manipulation
+ * logic.
+ */
+
 /* global suite, test */
 
 //
