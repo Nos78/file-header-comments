@@ -10,7 +10,11 @@
 		"url": "http://codin.gq"
 	},
 	"keywords": [
-		"header", "file", "comments", "vscode-fileheader", "modified"
+		"header",
+		"file",
+		"comments",
+		"vscode-fileheader",
+		"modified"
 	],
 	"galleryBanner": {
 		"color": "#3B4859",
