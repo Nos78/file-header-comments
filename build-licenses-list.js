@@ -70,6 +70,7 @@ const options = yargs
     .option("j", {alias: "json", describe: `${terminal.light.yellow}Outputs command-line args (by yargs).${terminal.normal}${terminal.blink} For DEBUGGING!${terminal.normal}`, type: "boolean"})
     .option("o", { alias: "osi", describe: `${terminal.light.red}Only include OSI Approved licenses.${terminal.normal}${terminal.italic} Defaults to false.${terminal.normal}`, type: "boolean"})
     .option("F", { alias: "filename", describe:`${terminal.cyan}${terminal.bold}<filename>${terminal.normal}${terminal.cyan} to save the licenses to.${terminal.normal}${terminal.italic} Outputs a json,\ndefault prints to screen.`, type: "string", requiresArg: true})
+    .option("V", {alias: "verbose", describe: "verbose mode, outputs a lot more text.", type: "boolean"})
     .argv;
 
 // Some flags for including/excluding licenses
@@ -82,6 +83,7 @@ var outputFile = null;
 var createContributesConfig = (options.c);
 var configOutputFilePath = options.c;
 var configOutputFile = null;
+var isVerbose = options.V;
 
 console.log(`${name}: Building the list of licenses`);
 console.log(` * Listing licenses that match the following:`);
@@ -262,11 +264,12 @@ let licensesRequest = https.get(spdxUrl, function(res) {
 
             // Now either display the config json or write it out to file
             // First convert it to a pretty json string (arrays on one line, properties on new line)
-            var configPropertiesString = JSON.stringify(contributesProperties,function(key,value){
+            var configPropertiesString = JSON.stringify(contributesProperties, null, " ");
+            /*var configPropertiesString = JSON.stringify(contributesProperties,function(key,value){
                 if(value instanceof Array)
-                   return JSON.stringify(value);
+                   return JSON.stringify(value, null, );
                 return value;
-             },2);
+             },2);*/
 
             if(pathHelper.isAbsolute(pathHelper.format(configOutputFile))) {
                 fs.writeFile(pathHelper.format(configOutputFile), configPropertiesString, 'utf8', function(err) {
