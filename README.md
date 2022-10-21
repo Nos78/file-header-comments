@@ -47,7 +47,7 @@ In the User Settings inside, set and modify the creator's name & email.
 
 ## 0.2.1
 **Release date 2022-10-21**
-We recently added two new fields to our comment header block, author's @Email and @Description. Like all the other fields, these where added into the template (now templates plural) and populated whenever the user inserts a header. It has come to mind that some users might not want these additional ields, preferring the template(s) to look the same as they used to. They could edit the template, but faced with a big warning not to edit, they may be reluctant to do so...
+We recently added two new fields to our comment header block, author's @Email and @Description. Like all the other fields, these where added into the template (now templates plural) and populated whenever the user inserts a header. It has come to mind that some users might not want these additional fields, preferring the template(s) to look the same as they used to. They could edit the template, but faced with a big warning not to edit, they may be reluctant to do so...
 
 * Updated the configuration settings with two new checkboxes, grouped under 'rendering options'. These check boxes (default is ON) allow the user to turn off the @Email and @Description tag when inserting a new comment header. This allows the user to turn o
 
