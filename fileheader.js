@@ -3,10 +3,12 @@
  * @Email: noscere1978@gmail.com
  * @Date: 2022-10-17 17:21:51 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-17 18:54:26
+ * @Last Modified time: 2022-10-21 17:01:33
  * @Description: Collection of functions that will populate
  * file comment headers.
  */
+const name = "fileheader";
+
 
 exports.dateFormat = function (format) {
     var o = {
@@ -62,6 +64,29 @@ exports.dateFormat = function (format) {
     };
 }
 
+function preprocess(tpl, opts) {
+    // Check passed parameters
+    if(!tpl) {
+        // no template to process!
+        console.error(`${name}.preprocess(tpl, opts) tpl == null`);
+        return tpl;
+    }
+    if(!opts) {
+        // no options to process with!
+        console.error(`${name}.preprocess(tpl, opts) opts == null`);
+        return tpl;
+    }
+    // process template, filtering out the opts.<tag>=false lines
+    // IMPORTANT: New opts need to be added here
+    // @TODO: Can we process the opts automatically so the code
+    // can remain the same if we add new options? (Loop through them?)
+    tpl = tpl.split('\n').filter(function(line){
+        return ((line.indexOf("@Description:") == -1) || (opts.description)) &&
+                ((line.indexOf("@Email:") == -1) || (opts.email));
+    }).join('\n');
+    // Return our processed template
+    return tpl;
+}
 
 function replaceSubstringInLine(line, substringRegex, newText) {
     var newLine = line.replace(substringRegex, function(match, p1, p2, p3){
@@ -89,5 +114,6 @@ function constructCommentLine(fieldLabel, fieldText, linePrefix = "", lineSuffix
 
 
 exports.template = template;
+exports.preprocess = preprocess;
 exports.replaceSubstringInLine = replaceSubstringInLine;
 exports.constructCommentLine = constructCommentLine;

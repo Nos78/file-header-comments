@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-18 19:16:36
+ * @Last Modified time: 2022-10-21 17:05:36
  */
 
 var vscode = require('vscode');
@@ -79,6 +79,8 @@ function activate(context) {
                 createTime: time,
                 updateTime: time
             }
+            // Pre-process the template for any disabled elements
+            configTpl = fileheader.preprocess(configTpl, config.renderingOptions);
             try {
                 var tpl = new fileheader.template(configTpl).render(data);;
                 editBuilder.insert(new vscode.Position(line, 0), tpl);
@@ -88,7 +90,7 @@ function activate(context) {
 
         });
 
-    });
+    }); // registerCommand
 
     context.subscriptions.push(disposable);
     vscode.workspace.onDidSaveTextDocument(function (file) {
@@ -200,7 +202,7 @@ function activate(context) {
                 console.error(error);
             }
         }, 200);
-    });
+    }); // onDidSaveTextDocument
 }
 
 function getConfiguration() {
