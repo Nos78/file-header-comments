@@ -136,5 +136,8 @@
 		"publisherDisplayName": "codingq",
 		"publisherId": "de50c412-f611-4186-907e-80a8dbf49ca6",
 		"isPreReleaseVersion": false
+	},
+	"dependencies": {
+		"application-errors": "^1.0.1"
 	}
 }
