@@ -45,6 +45,13 @@ In the User Settings inside, set and modify the creator's name & email.
 
 # Change log
 
+## 0.2.2
+** Release date 2022-11-11**
+Fixed issue whereby changes to the extension settings were not being used until vscode was rebooted. This was due to the extension caching the settings when it is first loaded, so changes to the settings weren't being used until next reload.
+
+
+## Change log (history)
+
 ## 0.2.1
 **Release date 2022-10-21**
 We recently added two new fields to our comment header block, author's @Email and @Description. Like all the other fields, these where added into the template (now templates plural) and populated whenever the user inserts a header. It has come to mind that some users might not want these additional fields, preferring the template(s) to look the same as they used to. They could edit the template, but faced with a big warning not to edit, they may be reluctant to do so...
@@ -54,10 +61,6 @@ We recently added two new fields to our comment header block, author's @Email an
 Note: This does not affect existing headers; existing fields can be deleted manually if unwanted.
 
 There are a lot of options now in the extensions configuration, and it might become obvious when experimenting that you have to restart VS Code in order to see the new setting value take effect. This is due to the way the extension stores the settings configuration. When there were only a few settings, whose values would very rarely, if ever need to change, the extension cached them when it was loaded. Now that there are a bunch of settings that might be changed more often, it may make sense to re-evaluate this for an upcoming release.
-
-
-
-## Change log (history)
 
 ## 0.2.0
 **Release date 2022-10-18**
