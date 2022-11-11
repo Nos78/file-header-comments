@@ -9,5 +9,4 @@ build-licenses-list.js
 node_modules/**
 .nyc_output/**
 coverage/**
-images/**
 
