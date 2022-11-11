@@ -138,6 +138,6 @@
 		"isPreReleaseVersion": false
 	},
 	"dependencies": {
-		"application-errors": "^1.0.1"
+		"application-errors": "^1.0.2"
 	}
 }

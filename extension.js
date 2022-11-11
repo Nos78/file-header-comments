@@ -2,35 +2,42 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-21 17:05:36
+ * @Last Modified time: 2022-11-11 20:14:27
  */
 
 var vscode = require('vscode');
 const fileheader = require('./fileheader');
+const customErrors = require('application-errors');
 
 Date.prototype.format = fileheader.dateFormat;
 
-
-function activate(context) {
+function getConfig() {
     var config = vscode.workspace.getConfiguration('fileheader');
-    console.log('"file-header-comments" is now active!');
-
-    var lastModifiedBy = config.LastModifiedBy;
     if(config.Author) {
         // Sanity check - shouldn't be null, but you never know
         if(config.LastModifiedBy) {
             if(config.Author != 'Someone' && config.LastModifiedBy == 'Someone') {
                 // If the author is set, but the last modified isn't...
-                lastModifiedBy = config.Author;
+                config.lastModifiedBy = config.Author;
             }
         } // if config.LastModifiedBy
         else {
             // if there is no Last Modified name specified
             // then use the author name instead
-            lastModifiedBy = config.Author;
+            config.lastModifiedBy = config.Author;
         }
     }
+    return config;
+}
+
+function activate(context) {
+    console.log('"file-header-comments" is now active!');
+
     var disposable = vscode.commands.registerCommand('extension.fileheader', function () {
+        var config = getConfig();
+        if (!config) {
+            throw new customErrors.ObjectError(config, "vscode.WorkspaceConfiguration", "file-header-comments.registerCommand() - unexpected undefined object - getConfig() return value was undefined");
+        }
         var editor = vscode.editor || vscode.window.activeTextEditor;
 
         var languageId = editor.document.languageId || null;
@@ -75,7 +82,7 @@ function activate(context) {
             var data = {
                 author: config.Author,
                 email: config.Email,
-                lastModifiedBy: lastModifiedBy, // use local variable assigned above
+                lastModifiedBy: config.LastModifiedBy,
                 createTime: time,
                 updateTime: time
             }
@@ -94,6 +101,11 @@ function activate(context) {
 
     context.subscriptions.push(disposable);
     vscode.workspace.onDidSaveTextDocument(function (file) {
+        var config = getConfig();
+        if (!config) {
+            throw new customErrors.ObjectError(config, "vscode.WorkspaceConfiguration", "file-header-comments.onDidSaveTextDocument() : unexpected undefined object - getConfig() return value was undefined");
+        }
+
         setTimeout(function () {
             try {
                 var f = file;
