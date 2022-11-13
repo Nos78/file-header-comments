@@ -46,8 +46,11 @@ In the User Settings inside, set and modify the creator's name & email.
 # Change log
 
 ## 0.2.2
-** Release date 2022-11-11**
-Fixed issue whereby changes to the extension settings were not being used until vscode was rebooted. This was due to the extension caching the settings when it is first loaded, so changes to the settings weren't being used until next reload.
+** Release date 2022-11-13**
+* Removed trailing C-style closing comment from the HTML template.
+* Added validation to the configuration settings for the email address and date format text boxes. Invalid entries will display an error message informing the user and this invalid setting will not be updated until corrected.
+* Corrected the inconsistent formatting for the *File Types* information label beneath the templates. They should now all look the same.
+* Fixed issue whereby changes to the extension settings were not being used until vscode was rebooted. This was due to the extension caching the settings when it is first loaded, so changes to the settings weren't being used until next reload.
 
 
 ## Change log (history)
