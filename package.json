@@ -58,30 +58,32 @@
 					"type": "string",
 					"default": "someone@example.com",
 					"description": "The author's e-mail address.",
+					"pattern": "(?:[a-z0-9!#$%&'*+\/=?^_{|}~-]+(?:.[a-z0-9!#$%&'*+\/=?^_{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+					"patternErrorMessage": "Please input a valid email address.",
 					"order": 2
 				},
 				"fileheader.templates.c": {
 					"type": "string",
 					"default": "/*\r\n * @Author: {author} \r\n * @Email: {email}\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime}\r\n * @Description: Description\r\n */\r\n",
-					"markdownDescription": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\n\n**Default style:** Applies to all file types that do not have a template defined here.",
+					"markdownDescription": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\n\n**File types:** Applies to all file types that do not have a template defined here.",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.shellScript": {
 					"type": "string",
 					"default": "# @Author: {author}\r\n# @Email: {email}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n# @Description: Description\r\n",
-					"markdownDescription": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\n\nFile types: shell, python, perl, perl6",
+					"markdownDescription": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\n\n**File types:** shell, python, perl, perl6",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.html": {
 					"type": "string",
-					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: Description\r\n */\r\n   -->\r\n",
-					"markdownDescription": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\n\nFile types: html",
+					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: Description\r\n   -->\r\n",
+					"markdownDescription": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\n\n**File types:** html",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.visualBasic": {
 					"type": "string",
 					"default": "' @Author: {author}\r\n' @Email: {email}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n' @Description: Description\r\n",
-					"markdownDescription": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\n\nFile types: visual basic (vb)",
+					"markdownDescription": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\n\n**File types:** visual basic (vb)",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.LastModifiedBy": {
@@ -94,6 +96,8 @@
 					"type": "string",
 					"default": "yyyy-MM-dd hh:mm:ss",
 					"markdownDescription": "The date & time format to use for indicating when a file was created or last modified at.",
+					"pattern": "(?=\\D*(?:[y]{1,4}|[Md]{2,3})(?:[\/\\-., ])?((?:[y]{1,4}|[Md]{2,3})(?:[\/\\-., ])?)?(?:[y]{1,4}|[Md]{2,3})(?:[., ]*)?)(?=\\D*((?:[hms]{2}[:. ]?(?:[hms]{2})?[:. ]?(?:[hms]{2})?[:. ]?S?)(?:[., ]*)?))^[yMdhmsS:.,\/\\- ]*$",
+					"patternErrorMessage": "Please input a valid date formatting string (Refer to ISO-8601 for more information).",
 					"order": 4
 				},
 				"fileheader.renderingOptions.description": {
@@ -105,7 +109,7 @@
 				"fileheader.renderingOptions.email": {
 					"type": "boolean",
 					"default": "true",
-					"markdownDescription": "Indicates whether the @Email tag will be included when inserting a new file header comment block.\n\nThis will **not affect** existing file headers.",
+					"markdownDescription": "Indicates whether the @Email tag will be included when inserting a new file header comment block.\n\nWhen enabled, inserts `#fileheader.Email#` into new comment headers.\n\nThis will **not affect** existing file headers.",
 					"order": 5
 				}
 			}
