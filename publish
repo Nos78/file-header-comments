@@ -1,0 +1,4 @@
+#!/bin/bash
+rm file-header-comments*.vsix
+vsce publish
+
