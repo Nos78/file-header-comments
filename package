@@ -1,4 +1,5 @@
 #!/bin/bash
 rm file-header-comments*.vsix
 vsce package
-
+echo -e "Ensure there are no files in the release archive that should not be there!\nArchive contents are as follows:"
+unzip -t file-header-comments*.vsix
