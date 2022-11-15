@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:15:56.517
+ * @Last Modified time: 2022-11-15 07:22:32.354
  */
 
 var vscode = require('vscode');
@@ -13,6 +13,7 @@ Date.prototype.format = fileheader.dateFormat;
 
 function getConfig() {
     var config = vscode.workspace.getConfiguration('fileheader');
+    config.lastModifiedBy = config.LastModifiedBy;
     if(config.Author) {
         // Sanity check - shouldn't be null, but you never know
         if(config.LastModifiedBy) {
@@ -95,7 +96,7 @@ function activate(context) {
             var data = {
                 author: config.Author,
                 email: config.Email,
-                lastModifiedBy: lastModifiedBy, // use local variable assigned above
+                lastModifiedBy: config.lastModifiedBy, // use local variable assigned in getConfig()
                 createTime: time,
                 updateTime: time,
                 description: description
