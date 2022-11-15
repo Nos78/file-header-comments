@@ -13,7 +13,7 @@ eg:
  * @Email:  admin@example.com
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-15 18:45:59
+ * @Last Modified time: 2022-11-15 06:20:24.402
  * @Description: description
  */
 ```
@@ -45,15 +45,20 @@ In the User Settings inside, set and modify the creator's name & email.
 
 # Change log
 
+## 0.2.3
+** Release date 2022-11-15
+* When inserting a header into a file using the keyboartd shortcut, (CTRL+ALT+I by default) a new input dialog box is now displayed that prompts for a description of the file. This change does not apply to existing headers, and the dialog is not shown if the @Description field is turned off.
+* * Escaping this dialog or entering a blank value will cause the default value to be rendered.
+
+
+## Change log (history)
+
 ## 0.2.2
 ** Release date 2022-11-13**
 * Removed trailing C-style closing comment from the HTML template.
 * Added validation to the configuration settings for the email address and date format text boxes. Invalid entries will display an error message informing the user and this invalid setting will not be updated until corrected.
 * Corrected the inconsistent formatting for the *File Types* information label beneath the templates. They should now all look the same.
 * Fixed issue whereby changes to the extension settings were not being used until vscode was rebooted. This was due to the extension caching the settings when it is first loaded, so changes to the settings weren't being used until next reload.
-
-
-## Change log (history)
 
 ## 0.2.1
 **Release date 2022-10-21**

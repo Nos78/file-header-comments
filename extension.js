@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-11 20:14:27
+ * @Last Modified time: 2022-11-15 06:15:56.517
  */
 
 var vscode = require('vscode');
@@ -33,7 +33,7 @@ function getConfig() {
 function activate(context) {
     console.log('"file-header-comments" is now active!');
 
-    var disposable = vscode.commands.registerCommand('extension.fileheader', function () {
+    var disposable = vscode.commands.registerCommand('extension.fileheader', async function () {
         var config = getConfig();
         if (!config) {
             throw new customErrors.ObjectError(config, "vscode.WorkspaceConfiguration", "file-header-comments.registerCommand() - unexpected undefined object - getConfig() return value was undefined");
@@ -75,28 +75,43 @@ function activate(context) {
         * @Last Modified time: 2017-02-28 17:51:35
         * @description: Insert at the current row instead of the first row
         */
-                
+
+        var description = "";
+        var defaultDescription = vscode.window.activeTextEditor.document.uri.toString();
+        if(config.renderingOptions.description) {
+            // prompt the user for a description
+            description = await vscode.window.showInputBox({
+                                            "title": "File Header Description",
+                                            "value": defaultDescription,
+                                            "prompt": "Enter a description for this file. The filename and window title is the default value.\nEntering no description will disable the @Description field for this file.",
+                                            "ignoreFocusOut": true })
+        }
+        if(!description) {
+            description = defaultDescription;
+        }
         var line = editor.selection.active.line;
         editor.edit(function (editBuilder) {
             var time = new Date().format(config.dateFormat);
             var data = {
                 author: config.Author,
                 email: config.Email,
-                lastModifiedBy: config.LastModifiedBy,
+                lastModifiedBy: lastModifiedBy, // use local variable assigned above
                 createTime: time,
-                updateTime: time
+                updateTime: time,
+                description: description
             }
             // Pre-process the template for any disabled elements
             configTpl = fileheader.preprocess(configTpl, config.renderingOptions);
+            // prompt user for any additional information
+
+            // do the insert
             try {
                 var tpl = new fileheader.template(configTpl).render(data);;
                 editBuilder.insert(new vscode.Position(line, 0), tpl);
             } catch (error) {
                 console.error(error);
             }
-
-        });
-
+        }); // function editBuilder
     }); // registerCommand
 
     context.subscriptions.push(disposable);

@@ -64,25 +64,25 @@
 				},
 				"fileheader.templates.c": {
 					"type": "string",
-					"default": "/*\r\n * @Author: {author} \r\n * @Email: {email}\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime}\r\n * @Description: Description\r\n */\r\n",
+					"default": "/*\r\n * @Author: {author} \r\n * @Email: {email}\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime}\r\n * @Description: {description}\r\n */\r\n",
 					"markdownDescription": "Default template for files that use C-style comment blocks. **Do not modify** without also modifying extension.js!\n\n**File types:** Applies to all file types that do not have a template defined here.",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.shellScript": {
 					"type": "string",
-					"default": "# @Author: {author}\r\n# @Email: {email}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n# @Description: Description\r\n",
+					"default": "# @Author: {author}\r\n# @Email: {email}\r\n# @Date: {createTime}\r\n# @Last Modified by:   {lastModifiedBy}\r\n# @Last Modified time: {updateTime}\r\n# @Description: {description}\r\n",
 					"markdownDescription": "Default template for script files (UNIX, Perl, Python) using hash # comments. **Do not modify** without also modifying extension.js!\n\n**File types:** shell, python, perl, perl6",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.html": {
 					"type": "string",
-					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: Description\r\n   -->\r\n",
+					"default": "<!-- @Author: {author}\r\n   - @Email: {email}\r\n   - @Date: {createTime}\r\n   - @Last Modified by:   {lastModifiedBy}\r\n   - @Last Modified time: {updateTime}\r\n   - @Description: {description}\r\n   -->",
 					"markdownDescription": "Default template for html files using <!-- --> comment blocks. **Do not modify** without also modifying extension.js!\n\n**File types:** html",
 					"editPresentation": "multilineText"
 				},
 				"fileheader.templates.visualBasic": {
 					"type": "string",
-					"default": "' @Author: {author}\r\n' @Email: {email}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n' @Description: Description\r\n",
+					"default": "' @Author: {author}\r\n' @Email: {email}\r\n' @Date: {createTime}\r\n' @Last Modified by:   {lastModifiedBy}\r\n' @Last Modified time: {updateTime}\r\n' @Description: {description}\n",
 					"markdownDescription": "Default template for visual basic files using quote ' comments. **Do not modify** without also modifying extension.js!\n\n**File types:** visual basic (vb)",
 					"editPresentation": "multilineText"
 				},
@@ -103,13 +103,13 @@
 				"fileheader.renderingOptions.description": {
 					"type": "boolean",
 					"default": "true",
-					"markdownDescription": "Indicates whether the @Description tag will be included when inserting a new file header comment block.\n\nThis will **not affect** existing file headers.",
+					"markdownDescription": "Indicates whether the @Description tag will be included when inserting a new file header comment block. If enabled, inserting a new header will prompt for a description to be input. The file name/title will be used if no description is entered.\n\nThis setting will **not affect** existing file headers.",
 					"order": 5
 				},
 				"fileheader.renderingOptions.email": {
 					"type": "boolean",
 					"default": "true",
-					"markdownDescription": "Indicates whether the @Email tag will be included when inserting a new file header comment block.\n\nWhen enabled, inserts `#fileheader.Email#` into new comment headers.\n\nThis will **not affect** existing file headers.",
+					"markdownDescription": "Indicates whether the @Email tag will be included when inserting a new file header comment block.\n\nWhen enabled, inserts `#fileheader.Email#` into new comment headers.\n\nThis setting will **not affect** existing file headers.",
 					"order": 5
 				}
 			}
