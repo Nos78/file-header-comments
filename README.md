@@ -45,13 +45,20 @@ In the User Settings inside, set and modify the creator's name & email.
 
 # Change log
 
+## 0.2.4
+**Release date 2022-11-15
+
+* Emergency bug fix to restore extension functionality. This extension had no dependancies prior to v*0.2.3*. In this release, a dependancy had been added to the project but node_modules was being deliberately excluded from the published package via the vscodeignore file.
+* Removed old versions of this change log - to view old releases prior to v*0.2.0* please refer to [the github repository](https://github.com/Nos78/file-header-comments/releases)
+
+
+## Change log (history)
+
 ## 0.2.3
 ** Release date 2022-11-15
 * When inserting a header into a file using the keyboartd shortcut, (CTRL+ALT+I by default) a new input dialog box is now displayed that prompts for a description of the file. This change does not apply to existing headers, and the dialog is not shown if the @Description field is turned off.
 * * Escaping this dialog or entering a blank value will cause the default value to be rendered.
 * Modified the header pre-processing function so that rendering options are now processed programmatically instead of having to manually update this function every time we add a new rendering option. This doesn't change the user experience but should hopefully speed up future development when adding new rendering features as there will be less changes to make and therefore less code to test and potentially break.
-
-## Change log (history)
 
 ## 0.2.2
 ** Release date 2022-11-13**
@@ -77,60 +84,6 @@ Incremented the minor version to reflect the new functionality. V0.2 of the exte
 * As promised, the new date format string added to the settings in the previous release now defines the date & time format for the file comment header. This string uses the allowed formatting for a javascript Date object, such as yyyy-MM-dd for a date that looks like 2022-12-03
 * Unit tests have been added for all fileheader module functions, which will assist future development not to break things.
 
-
-## Change log (history)
-
-### 0.1.4
-**Release date 2022-10-18**
-* Re-factored extension logic, separating the file header comments engine and related manipulation/population of headers out of extension.js and into a separate module. This additional layer of abstraction undoes some of the close-coupled functionality of extension.js and facilitates unit testing of the header logic.
-Extension.js couldn't be unit tested under the mocha framework as vscode is an invalid reference (by design; modules referencing vscode can only be integration tested, according to mocha documentation).
-* Modified extension's keywords to make searching for the extension in the marketplace a little easier (and attempting to link it to the previous extension name).
-* Added a new setting for the date format to the configuration properties. Users can now modify the display format string via the settings UI. This string is not currently referenced within the code, and the format string is currently hard-coded within the extension, but this will be useable from the next release of the extension! 
-
-### 0.1.3
-**Release date 2022-10-16**
-* Re-factored the way the templates are displayed by the Settings UI so that they are grouped together and categorised by language type.
-* Added logic to use the user-defined Author name when the Modified By remains undefined (either when it remains the defualt value or is blank).
-* Updated the Settings UI description fields so that markdown tags now work.
-
-The extension is now called file-header-comments, since the previous name was (obviously!) in use. The presumption that an extension was uniquely identified by a the combination of publisherId.extensionName was wrong, and the extension name has to also be unique. However, the settings are keeping the fileheader prefix, so that if a user upgrades to this extension, their settings will transfer automatically.
-
-### 0.1.1
-**Release date 2022-10-15**
-1. Re-worded the displayName field in the package manifest, since it was the same as the name field, we were giving up on the opportunity to explain what our extension does to those marketplace browsers who might only quickly scan down the list of extensions. It didn't make sense to have the same name twice, especially when said name is not very explanatory.
-2. Fixed the sponsor URL in the manifest.
-3. Removed the README for ch-zn (simplified chinese) since I cannot speak this language, and therefore am unable to make the changes necessary to make the README up-to-date. It is preferable to have English only and let the user translate it for themselves rather than provide a README that is wrong because it is no longer up-to-date.
-
-
-### 0.1.0
-**Release date 2022-10-15**
-*There has been no release of the original author's extension in six years, despite changes being made and committed to the repository three years ago.  Given that there were unreleased modifications and further improvements to be made, CodingQ has assumed responsibility for its continuing development under the assumption that the original author has abandoned this extension.*
-
-This release candidate has been prepared under a new publisher. This effectively means that it becomes a new extension with a new history. Without any links to the old extension, sadly this means that users of the existing extension will not be upgraded automatically. We have made attempts to contact the original author in the hope that either we can merge our new functionality into the parent repository, have the ability to modify the existing extension, or else have it transferred under our control. Failing any of those options, then mark the old extension as deprecated and direct users to install this new one.
-
-File comment headers for most common file types are now supported. Each type has its own the template that can be found in the settings. The look is identical to the C-Style comment block, but using the alternative comment character instead of an asterisk (*).
-
-Added support for languages that use alternative characters for comments:
-  1. Shell scripts and other scripting languages, such as perl and python use hash (#) character for comments.
-  2. Visual basic uses apostrophe (') character for comments.
-  3. A html comment block uses exclamation mark and dashes between angled brackets.
-
-Now you can add file headers for all these file types. The template for each of these can be found in the settings. The default template looks the same as for the C-style comment block, but with the alternative character instead of *.
-
-
-### 0.0.3 :
-*This is a summary list of the changes that have been committed to the github repository since the last marketplace release up until the repository was forked on 2022-10-13. **Note** that this version was not released to the marketplace, nor is there a downloadable release package.*
-**Release date 2019-10-12**
-
-Minor bug fixes by various contributors:
-  1. Inserted two new fields into the comment header, @Email and @Description. The email field can be set in the settings next to the author name, whilst the description will just say "@Description: description" allowing the author to add their own descrption.
-  2. The extension now tries to use regex to find the modified by author, date & time to insert the changes.
-
-### 0.0.2
-**Release date 2016-08-10** *Note that this release was marked as v1.0.0 in the change log whilst the manifest stated v0.0.2; assuming manifest to be the correct version and adjusted this change log accordingly**
-  1. Support hotkey insert header comments
-  2. Support Save file, automatically update the time
-  3. Support the configuration and update the creator's name
 
 
 ## tasks for future releases:
