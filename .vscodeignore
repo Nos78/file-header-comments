@@ -6,7 +6,6 @@ jsconfig.json
 vsc-extension-quickstart.md
 release/**
 build-licenses-list.js
-node_modules/**
 .nyc_output/**
 coverage/**
 keep/**
