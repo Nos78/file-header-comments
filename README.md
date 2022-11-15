@@ -45,14 +45,20 @@ In the User Settings inside, set and modify the creator's name & email.
 
 # Change log
 
+
+## 0.2.5
+**Release date 2022-11-15
+
+* Fixed issue where `last Modified By` name could be undefined
+
+
+## Change log (history)
+
 ## 0.2.4
 **Release date 2022-11-15
 
 * Emergency bug fix to restore extension functionality. This extension had no dependancies prior to v*0.2.3*. In this release, a dependancy had been added to the project but node_modules was being deliberately excluded from the published package via the vscodeignore file.
 * Removed old versions of this change log - to view old releases prior to v*0.2.0* please refer to [the github repository](https://github.com/Nos78/file-header-comments/releases)
-
-
-## Change log (history)
 
 ## 0.2.3
 ** Release date 2022-11-15
