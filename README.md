@@ -13,7 +13,7 @@ eg:
  * @Email:  admin@example.com
  * @Date:   2016-07-29 15:57:29
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:20:24.402
+ * @Last Modified time: 2022-11-15 06:25:53.546
  * @Description: description
  */
 ```
@@ -49,7 +49,7 @@ In the User Settings inside, set and modify the creator's name & email.
 ** Release date 2022-11-15
 * When inserting a header into a file using the keyboartd shortcut, (CTRL+ALT+I by default) a new input dialog box is now displayed that prompts for a description of the file. This change does not apply to existing headers, and the dialog is not shown if the @Description field is turned off.
 * * Escaping this dialog or entering a blank value will cause the default value to be rendered.
-
+* Modified the header pre-processing function so that rendering options are now processed programmatically instead of having to manually update this function every time we add a new rendering option. This doesn't change the user experience but should hopefully speed up future development when adding new rendering features as there will be less changes to make and therefore less code to test and potentially break.
 
 ## Change log (history)
 
