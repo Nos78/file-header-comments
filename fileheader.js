@@ -64,6 +64,12 @@ exports.dateFormat = function (format) {
     };
 }
 
+/**
+ * @description removes any disabled fields from a given `tpl`, specified by `opts`, and returns the pre-processed tpl.
+ * @param {string} tpl
+ * @param {JSON} opts
+ * @return {string} pre-processed template
+ */
 function preprocess(tpl, opts) {
     // Check passed parameters
     if(!tpl) {
@@ -77,12 +83,15 @@ function preprocess(tpl, opts) {
         return tpl;
     }
     // process template, filtering out the opts.<tag>=false lines
-    // IMPORTANT: New opts need to be added here
-    // @TODO: Can we process the opts automatically so the code
-    // can remain the same if we add new options? (Loop through them?)
+    // New opts are automatically pre-processed here, no need to manually add
+    // new ones to the list - NOTE: the name needs to be the same as the text
     tpl = tpl.split('\n').filter(function(line){
-        return ((line.indexOf("@Description:") == -1) || (opts.description)) &&
-                ((line.indexOf("@Email:") == -1) || (opts.email));
+        let include = true;
+        for (var i = 0;  i < opts.length; i++) {
+            include = include &&
+                ((line.indexOf("@" + opts[i].name + ":") == -1) || (opts[i]));
+        }
+        return include;
     }).join('\n');
     // Return our processed template
     return tpl;
