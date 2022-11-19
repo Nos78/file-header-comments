@@ -7,7 +7,7 @@ Add a file header comment block to new and existing files. The header template i
 
 eg:
 
-```
+```c
 /*
  * @Author: mikey.zhaopeng
  * @Email:  admin@example.com
@@ -95,9 +95,9 @@ Incremented the minor version to reflect the new functionality. V0.2 of the exte
 ## tasks for future releases:
 *(for further details on these tasks/issues, refer to https://github.com/Nos78/vscode-fileheader/issues and https://github.com/Nos78/vscode-fileheader/projects)*
 
- 1. [] Currently the template cannot be modified without potentially having to make changes to the code. Make the template editable without breaking the auto-update-on-save feature. The hard-coded strings in extension.js essentially prevents the user from changing the look of the template for their file comment header.
+ 1. [] <span style="color: red;">Currently the template cannot be modified without potentially having to make changes to the code. Make the template editable without breaking the auto-update-on-save feature. The hard-coded strings in extension.js essentially prevents the user from changing the look of the template for their file comment header.</span>
  2. [x] the "modified by" and "modified time" are hardcoded into extension.js. Refactor the code so that these are also editable in the settings, fixing the above also.
- 3. [] Some form of @copyright field would be useful, either directing the reader to a project-wide statement or file, or a URL, or else inserting a sting literal which would also be user defined via the settings page.
+ 3. [] <span style="color: red;">Some form of @copyright field would be useful, either directing the reader to a project-wide statement or file, or a URL, or else inserting a sting literal which would also be user defined via the settings page.</span>
  4. [] Comment headers often contain a version number along with the modified date & time. This would be implemented by way of an additional **@Version** field, with several formats to choose from in the settings. A selection of pre-configured version styles, along with a custom entry should the user wish to define their own.
- 5. [] File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.
+ 5. [] <span style="color: red;">File version numbers could be auto-incremented upon save. This would be enabled or disabled via a toggle from within the user (global) or workspace (project specific) settings. When enabled, the patch level of the version number would be incremented at the same time as modifying the modified at date & time.</span>
  6. [] Allow the user to specify rules as to how the version number is incremented. What defines whether to increment the patch number, or to increment the minor or major number?
